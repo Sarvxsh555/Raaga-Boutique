@@ -120,16 +120,12 @@ function Navbar() {
             <Link
               key={n.to}
               to={n.to}
-              className="relative text-[0.78rem] tracking-[0.18em] uppercase text-foreground/80 hover:text-primary transition-colors"
-              activeProps={{ className: "text-primary" }}
+              className="group relative text-[0.78rem] tracking-[0.18em] uppercase text-foreground/80 transition-colors hover:text-primary"
+              activeProps={{ className: "text-primary [&_.nav-underline]:w-full" }}
               activeOptions={{ exact: n.to === "/" }}
             >
-              {({ isActive }) => (
-                <>
-                  {n.label}
-                  <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
-                </>
-              )}
+              {n.label}
+              <span className="nav-underline absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
