@@ -41,40 +41,41 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand */
-  --ivory: oklch(0.985 0.025 105);     /* #FFFFE3 */
-  --ink: oklch(0.585 0.038 240);       /* #6D8196 */
-  --gold: oklch(0.78 0.11 78);
+  /* Brand — Desert Dusk palette */
+  --ivory: oklch(0.985 0.012 60);          /* warm off-white */
+  --ink: oklch(0.47 0.13 350);             /* #993A8B magenta — primary */
+  --gold: oklch(0.74 0.16 50);             /* #E68057 sunset orange — accent */
 
   --background: var(--ivory);
-  --foreground: oklch(0.39 0 0);       /* #4A4A4A */
+  --foreground: oklch(0.28 0.06 350);      /* deep mulberry text */
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.39 0 0);
+  --card-foreground: oklch(0.28 0.06 350);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.39 0 0);
+  --popover-foreground: oklch(0.28 0.06 350);
 
-  --primary: var(--ink);
-  --primary-foreground: oklch(0.985 0.025 105);
-  --primary-dark: oklch(0.42 0.04 240);
-  --primary-light: oklch(0.78 0.03 240);
+  --primary: var(--ink);                    /* #993A8B */
+  --primary-foreground: oklch(0.985 0.012 60);
+  --primary-dark: oklch(0.52 0.11 25);     /* #A2574F clay rose */
+  --primary-light: oklch(0.7 0.07 350);    /* #BF7587 dusty pink */
 
-  --secondary: oklch(0.96 0.02 105);
-  --secondary-foreground: oklch(0.39 0 0);
+  --secondary: oklch(0.95 0.025 30);       /* warm peach tint */
+  --secondary-foreground: oklch(0.28 0.06 350);
 
-  --muted: oklch(0.94 0.01 105);
-  --muted-foreground: oklch(0.55 0 0);
+  --muted: oklch(0.93 0.022 30);
+  --muted-foreground: oklch(0.5 0.05 350);
 
-  --accent: var(--gold);
-  --accent-foreground: oklch(0.2 0 0);
+  --accent: var(--gold);                    /* #E68057 */
+  --accent-foreground: oklch(0.2 0.04 350);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.88 0.01 105);
-  --input: oklch(0.88 0.01 105);
+  --border: oklch(0.88 0.03 30);
+  --input: oklch(0.88 0.03 30);
   --ring: var(--ink);
 }
+
 
 @layer base {
   * {
