@@ -32,9 +32,9 @@ function Home() {
     <div className="overflow-hidden">
       <section ref={heroRef} className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-ivory">
         <motion.div style={{ y, opacity }} className="absolute inset-0">
-          <img src={hero} alt="Raaga signature look" className="absolute inset-0 h-full w-full object-cover object-[center_20%]" />
+          <img src={hero} alt="Raaga signature look" className="absolute inset-y-0 right-0 w-full md:w-[65%] h-full object-cover object-top" />
           <div className="absolute inset-0 bg-gradient-to-b from-ivory/60 via-ivory/0 to-ivory" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ivory/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ivory via-ivory/40 to-transparent" />
         </motion.div>
 
         <div className="container-luxe relative z-10 flex h-full flex-col justify-end pb-24 pt-32">

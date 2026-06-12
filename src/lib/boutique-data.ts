@@ -27,7 +27,7 @@ export type Product = {
   occasion: string;
 };
 
-export const PRODUCTS: Product[] = [
+const CURATED_PRODUCTS: Product[] = [
   {
     id: "p1", name: "Indigo Bloom Silk Saree", category: "Sarees", price: 38500,
     description: "Hand-loomed Kanjivaram silk with gold zari botanicals along the pallu.",
@@ -83,6 +83,294 @@ export const PRODUCTS: Product[] = [
     colors: [{ name: "Ivory", hex: "#FFFFE3" }], image: bridal, occasion: "Bridal",
   },
 ];
+
+const photoImages = import.meta.glob<string>(
+  "../assets/Photos/**/*.{jpg,jpeg,png,webp,avif}",
+  { eager: true, query: "?url", import: "default" },
+);
+
+const categoryDetails: Record<string, Pick<Product, "category" | "sizes" | "fabric" | "occasion">> = {
+  Saree: { category: "Sarees", sizes: ["Free Size"], fabric: "Designer Saree", occasion: "Festive" },
+  Kurti: { category: "Kurtis", sizes: ["XS", "S", "M", "L", "XL"], fabric: "Designer Fabric", occasion: "Daywear" },
+  Lehengas: { category: "Lehengas", sizes: ["XS", "S", "M", "L", "XL"], fabric: "Embroidered Fabric", occasion: "Wedding" },
+  Kids: { category: "Kids", sizes: ["2Y", "4Y", "6Y", "8Y", "10Y"], fabric: "Comfort Fabric", occasion: "Festive" },
+};
+
+const colorPalette = [
+  { keywords: ["black", "charcoal", "midnight"], name: "Midnight", hex: "#2A2730" },
+  { keywords: ["blue", "indigo"], name: "Ink Blue", hex: "#496785" },
+  { keywords: ["red", "velvet", "crimson"], name: "Crimson", hex: "#9B3A3A" },
+  { keywords: ["mint", "green"], name: "Mint", hex: "#A8C8B0" },
+  { keywords: ["gold", "champagne", "royal"], name: "Champagne", hex: "#D8BF86" },
+  { keywords: ["violet", "purple"], name: "Violet", hex: "#76618E" },
+  { keywords: ["pink", "rose", "blush"], name: "Blush", hex: "#DFA9B2" },
+  { keywords: ["grey", "gray"], name: "Slate", hex: "#85878B" },
+  { keywords: ["ivory", "white"], name: "Ivory", hex: "#F2EBDD" },
+];
+
+const PHOTO_DETAILS_OVERRIDE: Record<string, { name: string; description: string; fabric?: string; occasion?: string }> = {
+  // Kids
+  "Kids/cutest outfit ever 🫶🏻🩷.jpg": {
+    name: "Rose Petal Organza Lehenga",
+    description: "Delicate pink organza lehenga for children, featuring fine gold thread embroidery and a soft cotton inner lining.",
+    fabric: "Organza Silk",
+    occasion: "Festive",
+  },
+  "Kids/download.jpg": {
+    name: "Aria Pastel Anarkali",
+    description: "A pastel mint green kids' Anarkali suit in pure cotton silk with subtle lace details and a georgette dupatta.",
+    fabric: "Cotton Silk",
+    occasion: "Festive",
+  },
+  "Kids/Elegant Mint Green Kids Ethnic Outfit with Lace Detail 🌿.jpg": {
+    name: "Sage Lace Kurta Set",
+    description: "Kids ethnic set featuring a mint green kurta with exquisite scalloped lace trims and comfortable cotton trousers.",
+    fabric: "Comfort Fabric",
+    occasion: "Festive",
+  },
+  "Kids/Grey Casuals for kids, co-ord set inspo.jpg": {
+    name: "Slate Linen Co-ord Set",
+    description: "A lightweight, breathable grey linen co-ord set featuring a tunic-style top and soft trouser pants for kids.",
+    fabric: "Linen",
+    occasion: "Daywear",
+  },
+  "Kids/Look what I found on AliExpress.jpg": {
+    name: "Amara Floral Angrakha",
+    description: "Angrakha-style kids' kurta in a vibrant floral print, featuring tie-up side tassels and soft lining.",
+    fabric: "Comfort Fabric",
+    occasion: "Festive",
+  },
+  "Kids/SHEIN Teen Girls Shirt Co-Ords 2pcs_Set Elegant French-Style Lantern Sleeve Ruffled Bowknot Dress & Skirt Fall Winter.jpg": {
+    name: "Elysian Ruffled Dress",
+    description: "Elegant layered dress for young teens with delicate lace ruffles, a classic collar, and a tailored silhouette.",
+    fabric: "Comfort Fabric",
+    occasion: "Daywear",
+  },
+  "Kids/SHEIN Vestido Fofo com Gola Redonda e Manga Curta Bufante.jpg": {
+    name: "Blush Meadow Frock",
+    description: "Soft blush pink cotton dress with puffed sleeves and a gathered waistline, perfect for formal children's wear.",
+    fabric: "Cotton",
+    occasion: "Daywear",
+  },
+  "Kids/Toddler Girls' Retro Striped Print Sleeveless Set_ Retro Striped Pattern With Exquisite Embroidered Hem, Sleeveless Top + Wide-Leg Pants, Comfortable And Stylish, Suitable For Daily.jpg": {
+    name: "Zara Striped Palazzo Set",
+    description: "Retro-inspired striped top with a hand-embroidered hem paired with breathable wide-leg palazzo pants.",
+    fabric: "Embroidered Fabric",
+    occasion: "Daywear",
+  },
+  "Kids/Trendy Simple Design, Wood Grain Button Decoration Exquisite Line Trim Wave Collar Sleeveless Textil.jpg": {
+    name: "Linen Wave Tunic Set",
+    description: "Sleeveless linen tunic featuring a wave-cut collar and wooden button details, paired with straight trousers.",
+    fabric: "Comfort Fabric",
+    occasion: "Daywear",
+  },
+
+  // Kurti
+  "Kurti/❤️❤️❤️__.jpg": {
+    name: "Ruby Zardozi Kurti",
+    description: "Rich crimson modal silk kurti adorned with intricate gold zardozi embroidery on the neck and yoke.",
+    fabric: "Designer Fabric",
+    occasion: "Festive",
+  },
+  "Kurti/9c2d807bd1ca5b9293159091a7daafc9.jpg": {
+    name: "Ivory Jasmine Kurti",
+    description: "Classic white cotton-silk kurti featuring delicate self-embroidery and sheer organza sleeves.",
+    fabric: "Designer Fabric",
+    occasion: "Daywear",
+  },
+  "Kurti/👗💙.jpg": {
+    name: "Sapphire Silk Tunic",
+    description: "Luxe raw silk tunic in deep sapphire blue, featuring a modern slit collar and hand-stitched details.",
+    fabric: "Designer Fabric",
+    occasion: "Daywear",
+  },
+  "Kurti/Black Floral Printed Kurti Top for Women _ Elegant Casual Wear Under ₹199.jpg": {
+    name: "Midnight Dahlia Kurti",
+    description: "Premium georgette kurti in deep black with vintage floral prints, perfect for transition wear.",
+    fabric: "Designer Fabric",
+    occasion: "Daywear",
+  },
+  "Kurti/download (1).jpg": {
+    name: "Maya Georgette Kurta",
+    description: "A mustard yellow georgette kurta with detailed white thread embroidery and a matching inner slip.",
+    fabric: "Designer Fabric",
+    occasion: "Daywear",
+  },
+  "Kurti/download.jpg": {
+    name: "Avani Cotton Kurti",
+    description: "Breathable daily-wear cotton kurti in a sage green palette with delicate running-stitch details.",
+    fabric: "Designer Fabric",
+    occasion: "Daywear",
+  },
+  "Kurti/Traditionals for you!.jpg": {
+    name: "Vasudha Silk Kurta Set",
+    description: "Three-piece heritage kurta set in tussar silk, finished with hand-blocked prints and gold zari borders.",
+    fabric: "Designer Fabric",
+    occasion: "Festive",
+  },
+
+  // Lehengas
+  "Lehengas/download (2).jpg": {
+    name: "Aura Mint Bridal Lehenga",
+    description: "Mint green raw silk lehenga with extensive hand-embroidered zardozi and antique gold motifs.",
+    fabric: "Embroidered Fabric",
+    occasion: "Bridal",
+  },
+  "Lehengas/download.jpg": {
+    name: "Gulabi Gota Lehenga",
+    description: "A traditional bridal lehenga in rich hot pink, featuring elaborate gota patti border designs.",
+    fabric: "Embroidered Fabric",
+    occasion: "Bridal",
+  },
+  "Lehengas/Indian bridal lehenga.jpg": {
+    name: "Varanasi Silk Lehenga",
+    description: "Heirloom bridal lehenga crafted from pure Banarasi silk with intricate heritage gold thread weaves.",
+    fabric: "Silk",
+    occasion: "Bridal",
+  },
+  "Lehengas/Midnight Charcoal & Gold Embroidered Lehenga _ Designer Ethnic Wear.jpg": {
+    name: "Charcoal Gilded Lehenga",
+    description: "Contemporary charcoal grey lehenga featuring dramatic gold thread embroidery and sequined border highlights.",
+    fabric: "Embroidered Fabric",
+    occasion: "Wedding",
+  },
+  "Lehengas/Wonderful 🌸.jpg": {
+    name: "Tara Blush Lehenga",
+    description: "Chiffon lehenga in baby pink featuring delicate mirror-work and hand-painted floral borders.",
+    fabric: "Embroidered Fabric",
+    occasion: "Wedding",
+  },
+
+  // Saree
+  "Saree/2744449769971285.jpg": {
+    name: "Rani Silk Kanjivaram Saree",
+    description: "Traditional pink Kanjivaram silk saree with contrast gold borders and hand-woven checks.",
+    fabric: "Designer Saree",
+    occasion: "Festive",
+  },
+  "Saree/dfca20923e74c7c01a6b1e4f94700831.jpg": {
+    name: "Meera Chanderi Saree",
+    description: "A lightweight mustard Chanderi saree featuring self-embossed floral motifs and a thin gold zari outline.",
+    fabric: "Designer Saree",
+    occasion: "Festive",
+  },
+  "Saree/download.jpg": {
+    name: "Kalyani Organza Saree",
+    description: "A modern organza saree in ice blue, finished with hand-painted florals and scalloped borders.",
+    fabric: "Designer Saree",
+    occasion: "Festive",
+  },
+  "Saree/Dreamy Violet Dupatta Bridal Lehenga _ Luxury Gold Embroidered Wedding Lehenga Set.jpg": {
+    name: "Amethyst Royale Lehenga Saree",
+    description: "A pre-draped lehenga saree in royal violet with an elaborate gold-embroidered velvet dupatta.",
+    fabric: "Velvet",
+    occasion: "Wedding",
+  },
+  "Saree/Gorgeous Sari.jpg": {
+    name: "Surya Organza Saree",
+    description: "Bright sun-yellow organza saree decorated with delicate silver gotapatti and pearl accents.",
+    fabric: "Designer Saree",
+    occasion: "Festive",
+  },
+  "Saree/Looking so gorgeous! 🤩🤩🤩.jpg": {
+    name: "Saira Banarasi Saree",
+    description: "Rich silk Banarasi saree in emerald green with intricate gold and silver floral brocade.",
+    fabric: "Designer Saree",
+    occasion: "Festive",
+  },
+  "Saree/Luxury Gold Bridal Dress That Looks Absolutely Royal ✨.jpg": {
+    name: "Sitara Gilded Ensemble",
+    description: "A stunning hand-embroidered champagne gold couture outfit with intricate beadwork and heavy zardozi.",
+    fabric: "Designer Saree",
+    occasion: "Bridal",
+  },
+  "Saree/Mint Green Floral Embroidered Saree – Custom Made Net Designer Saree.jpg": {
+    name: "Flora Net Saree",
+    description: "Pastel mint net saree adorned with multi-color floral hand embroidery and glass bead fringes.",
+    fabric: "Designer Net",
+    occasion: "Festive",
+  },
+  "Saree/Red drapped Lehnga for Indian Bride.jpg": {
+    name: "Shahi Crimson Lehenga",
+    description: "A bespoke crimson red bridal lehenga with layered styling, hand-embroidered with classic bridal zardozi motifs.",
+    fabric: "Designer Saree",
+    occasion: "Bridal",
+  },
+  "Saree/Royal Velvet Bridal Lehenga Saree ✨ _ Luxury Indian Wedding Couture in Red & Gold.jpg": {
+    name: "Rajkumari Velvet Saree",
+    description: "Rich maroon velvet saree paired with a heavy hand-embroidered gold blouse, designed for wedding receptions.",
+    fabric: "Velvet",
+    occasion: "Wedding",
+  },
+};
+
+const cleanPhotoName = (filename: string, category: string, index: number) => {
+  const decoded = decodeURIComponent(filename)
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (/^(download|[a-f0-9]{16,}|\d+)($|\s)/i.test(decoded) || decoded.length < 5) {
+    return `${category} Edit ${String(index + 1).padStart(2, "0")}`;
+  }
+  return decoded.length > 68 ? `${decoded.slice(0, 65).trim()}...` : decoded;
+};
+
+const inferOccasion = (text: string, fallback: string) => {
+  if (/bridal|bride/i.test(text)) return "Bridal";
+  if (/wedding|lehenga/i.test(text)) return "Wedding";
+  if (/casual|daily|kurti|co-ord/i.test(text)) return "Daywear";
+  return fallback;
+};
+
+const inferFabric = (text: string, fallback: string) => {
+  if (/silk/i.test(text)) return "Silk";
+  if (/net/i.test(text)) return "Designer Net";
+  if (/velvet/i.test(text)) return "Velvet";
+  if (/embroider/i.test(text)) return "Embroidered Fabric";
+  return fallback;
+};
+
+const inferColors = (text: string) => {
+  const matches = colorPalette
+    .filter(color => color.keywords.some(keyword => text.toLowerCase().includes(keyword)))
+    .map(({ name, hex }) => ({ name, hex }));
+  return matches.length ? matches : [{ name: "Assorted", hex: "#B8A89A" }];
+};
+
+const PHOTO_PRODUCTS: Product[] = Object.entries(photoImages)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, image], index) => {
+    const parts = path.split("/");
+    const folder = parts.at(-2) ?? "";
+    const details = categoryDetails[folder] ?? {
+      category: folder || "Collection",
+      sizes: ["Made to Measure"],
+      fabric: "Designer Fabric",
+      occasion: "Festive",
+    };
+    const filename = parts.at(-1) ?? "";
+    const key = `${folder}/${filename}`;
+    const override = PHOTO_DETAILS_OVERRIDE[key];
+
+    const name = override?.name ?? cleanPhotoName(filename, details.category, index);
+    const searchableText = `${folder} ${filename} ${name}`;
+
+    return {
+      id: `photo-${index + 1}`,
+      name,
+      category: details.category,
+      price: 0,
+      description: override?.description ?? `${details.category} design from the Raaga boutique collection.`,
+      sizes: details.sizes,
+      fabric: override?.fabric ?? inferFabric(searchableText, details.fabric),
+      colors: inferColors(searchableText),
+      image,
+      occasion: override?.occasion ?? inferOccasion(searchableText, details.occasion),
+    };
+  });
+
+export const PRODUCTS: Product[] = [...PHOTO_PRODUCTS, ...CURATED_PRODUCTS];
 
 export const TESTIMONIALS = [
   { name: "Aanya Mehta", city: "Mumbai", rating: 5, text: "Raaga made my bridal lehenga feel like a private symphony. The fittings, the fabrics — every detail considered." },

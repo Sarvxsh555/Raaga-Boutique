@@ -32,14 +32,9 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
       <div className="px-1 py-5">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="eyebrow text-[0.6rem]">{product.category}</p>
-            <h3 className="mt-1 font-display text-xl text-primary">{product.name}</h3>
-          </div>
-          <p className="whitespace-nowrap font-display text-lg text-foreground">
-            {product.price ? `₹${product.price.toLocaleString("en-IN")}` : "On request"}
-          </p>
+        <div>
+          <p className="eyebrow text-[0.6rem]">{product.category}</p>
+          <h3 className="mt-1 font-display text-xl text-primary">{product.name}</h3>
         </div>
         <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
         <div className="mt-4 flex items-center justify-between">

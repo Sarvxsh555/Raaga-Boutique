@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Nisha Sharma",
+    "city": "Delhi",
+    "rating": 5,
+    "text": "Raaga Boutique has the most exquisite Banarasi silks. The tailoring and fitting were absolutely impeccable. Highly recommended!"
+  },
+  {
+    "name": "Sarvesh",
+    "city": "Banglore",
+    "rating": 4,
+    "text": "Good Place ! Surely Visit"
+  },
+  {
+    "name": "Aanya Mehta",
+    "city": "Mumbai",
+    "rating": 5,
+    "text": "Raaga made my bridal lehenga feel like a private symphony. The fittings, the fabrics — every detail considered."
+  },
+  {
+    "name": "Ishita Rao",
+    "city": "Bengaluru",
+    "rating": 5,
+    "text": "Heirloom craftsmanship without the heaviness. I wore my saree at a state dinner and it photographed beautifully."
+  },
+  {
+    "name": "Priya Suresh",
+    "city": "Chennai",
+    "rating": 5,
+    "text": "From sketch to final stitch, the atelier listened to every word. The result was emotional."
+  },
+  {
+    "name": "Sara Khan",
+    "city": "Delhi",
+    "rating": 5,
+    "text": "The kurtis fit like they were grown around me. I keep returning for the quiet luxury."
+  },
+  {
+    "name": "Meher Joshi",
+    "city": "Pune",
+    "rating": 5,
+    "text": "A house that respects tradition and tailors for now. Raaga is my forever address."
+  },
+  {
+    "name": "Naina Iyer",
+    "city": "Hyderabad",
+    "rating": 5,
+    "text": "I trusted Raaga with my mother's saree restoration. It came back as poetry."
+  }
+]
